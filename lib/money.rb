@@ -32,12 +32,6 @@ module SalesTaxCalculator
 
       raise NegativeAmountError, 'Amount must be positive' if amount_float.negative?
 
-      # TODO: are there more optimal approach to check if the amount has more than 2 decimal places?
-      # Check if the amount has more than 2 decimal places
-      # if (cents % 100) != 0
-      #  raise InvalidAmountError, 'Amount cannot have more than 2 decimal places'
-      # end
-
       new((amount_float * 100).round)
     end
 
