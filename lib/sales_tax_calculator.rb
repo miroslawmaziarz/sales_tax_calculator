@@ -12,7 +12,6 @@ require_relative 'basket/receipt'
 require_relative 'parsers/item_parser'
 
 # Main module for the Sales Tax Calculator.
-# Uses fixed-point integer arithmetic (cents) for precise monetary calculations.
 #
 # @example Basic usage
 #   basket = SalesTaxCalculator::Basket::Basket.new

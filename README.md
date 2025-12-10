@@ -65,10 +65,9 @@ Sales Taxes: 7.90
 Total: 98.38
 ```
 
-
 ## Requirements
 
-- Ruby >= 3.2.0
+- Ruby >= 3.4.7
 - Bundler
 
 ## Assumptions
@@ -99,7 +98,28 @@ ruby examples/run_examples.rb
 
 ## Architecture
 
-Apply Domain Driven Design
+The application follows **Domain-Driven Design (DDD)** principles to ensure a clean separation of concerns, maintainability, and testability. The codebase is organized into distinct domains.
+
+### Core Concepts
+
+*   **Aggregates & Entities**:
+    *   `ShoppingBasket`: The **Aggregate Root** that manages the collection of items. It ensures the integrity of the basket's state and calculates totals.
+    *   `Item`: An **Entity** representing a line item in the basket, linking a `Product` with a quantity and its calculated tax.
+    *   `Product`: An **Entity** representing the immutable details of a product (name, shelf price, category, import status).
+
+*   **Value Objects**:
+    *   `Money`: A **Value Object** used throughout the application to handle currency operations safely. It stores values in cents to avoid floating-point errors and encapsulates arithmetic logic.
+
+*   **Domain Services**:
+    *   `TaxCalculator`: A **Domain Service** that encapsulates the logic of tax calculation. It applies various tax rules to products to determine the applicable tax amount.
+
+*   **Design Patterns**:
+    *   **Strategy Pattern**: Used in `Tax::Rules` to apply different tax rules (Basic Sales Tax, Import Duty) flexibly. New tax rules can be added without modifying the calculator logic.
+    *   **Presenter Pattern**: `Receipt` acts as a presenter/read model, responsible for formatting the output representation of the basket.
+    *   **Dependency Injection**:
+        *   `TaxCalculator` accepts an array of `TaxRule` objects, allowing for easy extension or modification of tax logic without changing the calculator itself.
+        *   `ShoppingBasket` accepts a `TaxCalculator` instance, enabling the use of different tax calculation strategies or mock objects for testing.
+
 
 ### Directory Structure
 

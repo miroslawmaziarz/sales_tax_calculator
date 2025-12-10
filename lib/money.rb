@@ -2,7 +2,7 @@
 
 module SalesTaxCalculator
   # Simple value object for amounts using fixed-point arithmetic.
-  # Stores values in cents (integer) to avoid floating-point issues.
+  # Stores values in cents as integer avoiding calculation issues
   #
   # @example
   #   price = Money.from_amount(12.49)  # => 1249 cents
@@ -24,11 +24,11 @@ module SalesTaxCalculator
 
     # Creates a Money object from a decimal amount.
     #
-    # @param amount [Numeric, String] Amount in dollars (e.g., 12.49)
+    # @param decimal_amount [Numeric, String] Amount in dollars (e.g., 12.49)
     # @return [Money]
     # @raise [InvalidAmountError] if amount has more than 2 decimal places
-    def self.from_amount(amount)
-      amount_float = amount.to_f
+    def self.from_amount(decimal_amount)
+      amount_float = decimal_amount.to_f
 
       raise NegativeAmountError, 'Amount must be positive' if amount_float.negative?
 

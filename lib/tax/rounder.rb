@@ -3,7 +3,7 @@
 module SalesTaxCalculator
   module Tax
     # Value object responsible for rounding tax amounts.
-    # Implements the receipt tax rounding rule: round UP to the nearest $0.05.
+    # Implements the receipt tax rounding rule: round up to the nearest $0.05.
     #
     # Uses integer arithmetic exclusively to avoid floating-point precision errors.
     # Input is in "centi-cents" (hundredths of a cent) to preserve precision
